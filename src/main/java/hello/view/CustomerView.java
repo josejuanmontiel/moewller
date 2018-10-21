@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class CustomerView {
-    private String firstName;
-    private String lastName;
+    private String nombre;
+    private String apellido;
 }

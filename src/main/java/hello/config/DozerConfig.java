@@ -1,27 +1,29 @@
 package hello.config;
 
-import org.dozer.DozerBeanMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by jiyeon on 15. 9. 6..
- */
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
+
 @Configuration
 public class DozerConfig {
 
     @Bean(name = "org.dozer.Mapper")
-    public DozerBeanMapper dozerBean() {
-        List<String> mappingFiles = Arrays.asList(
-                "dozer-configration-mapping.xml"
-        );
+    public Mapper getMapper() {
 
-        DozerBeanMapper dozerBean = new DozerBeanMapper();
-        dozerBean.setMappingFiles(mappingFiles);
-        return dozerBean;
+        List<String> mappingFiles = Arrays.asList(
+            "classpath:mapping-dozer.xml"
+        );
+        
+        Mapper mapper = DozerBeanMapperBuilder.create()
+            .withMappingFiles(mappingFiles)
+            .build();
+
+        return mapper;
     }
 
 }

@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
+import com.github.dozermapper.core.DozerBeanMapperBuilder;
+import com.github.dozermapper.core.Mapper;
+import com.github.dozermapper.spring.DozerBeanMapperFactoryBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +23,7 @@ import hello.view.CustomerView;
 public class GreetingController {
 
     @Autowired
-    DozerBeanMapper dozerBeanMapper;
-
-    static Mapper mapper = new DozerBeanMapper();
+    private Mapper mapper;
 
     @Autowired
     private CustomerRepository cRepository;

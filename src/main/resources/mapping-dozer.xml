@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozermapper.github.io/schema/bean-mapping"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping http://dozermapper.github.io/schema/bean-mapping.xsd">
+  <mapping> 
+    <class-a>hello.model.Customer</class-a>
+    <class-b>hello.view.CustomerView</class-b>   
+    <field>
+      <a>firstName</a>
+      <b>nombre</b>
+    </field>
+    <field>
+      <a>lastName</a>
+      <b>apellido</b>
+    </field>
+  </mapping>  
+
+</mappings>
