@@ -16,7 +16,8 @@ public class DozerConfig {
     public Mapper getMapper() {
 
         List<String> mappingFiles = Arrays.asList(
-            "classpath:mapping-dozer.xml"
+            // "classpath:mapping-dozer.xml"
+            "file:///home/jose/git/moewller/src/main/resources/mapping-dozer.xml"
         );
         
         Mapper mapper = DozerBeanMapperBuilder.create()
