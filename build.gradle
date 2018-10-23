@@ -23,6 +23,17 @@ bootJar {
     version =  '0.1.0'
 }
 
+bootRun {
+  jvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n"]
+}
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
 repositories {
     mavenCentral()
 }
@@ -37,6 +48,8 @@ dependencies {
 
     compile("com.github.dozermapper:dozer-core:6.4.0")
     compile("com.github.dozermapper:dozer-spring-boot-starter:6.4.0")
+
+	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     compile("org.projectlombok:lombok:1.18.2")
     compileOnly 'org.projectlombok:lombok:1.18.2'

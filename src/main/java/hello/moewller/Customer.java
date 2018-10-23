@@ -1,74 +1,58 @@
 package hello.moewller;
 
-import static org.junit.Assert.assertEquals;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import hello.model.CustomerEntity;
+import hello.model.CustomerMo;
 import hello.view.CustomerView;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@Entity
 public class Customer {
 
-    private MVC layer = MVC.MO;
-    public MVC getLayer() { return layer; }
-    public void setLayer(MVC layer) { this.layer = layer; }
-
-    public Customer() {
-        nombre = firstName;
-    }
-
-
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    public Long getId() {
-        if (layer==MVC.MO) {
-            return id;
-        } else {
-            return null;
-        }
+
+    private MVC layer = MVC.MO;
+    public MVC getLayer() { 
+        return layer; 
     }
-    public void setId(Long id) {
-        this.id = id;
+    public void setLayer(MVC layer) { 
+        this.layer = layer; 
     }
 
-    private String firstName;
-    public String getFirstName() {
-        switch (layer) {
-            case MO: return firstName;
-            case LLER: return nombre; 
-        }
-        return null;
-    }
-    public void setFirstName(String firstName) {
+    public Customer(String firstName, String lastName) {
         this.firstName = firstName;
-        this.nombre = this.firstName;
-    }
-
-    private String lastName;
-    public String getLastName() {
-        return lastName;
-    }
-    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    private String nombre;
+    private String firstName;
+    private String lastName;
+
+    private String getFirstName() {
+        switch (layer) {
+            case MO: return firstName;
+            case LLER: return ""; 
+        }
+        return null;
+    }
+    private void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getNombre() {
         return firstName;
     }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    private String apellido;
     public String getApellido() {
-        return apellido;
+        return lastName;
     }
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    private CustomerEntity ce;
-    private CustomerView cv;
 
 }

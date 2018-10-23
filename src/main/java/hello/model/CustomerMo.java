@@ -11,7 +11,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class CustomerEntity {
+public class CustomerMo {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,9 +19,9 @@ public class CustomerEntity {
     private String firstName;
     private String lastName;
 
-    protected CustomerEntity() {}
+    protected CustomerMo() {}
 
-    public CustomerEntity(String firstName, String lastName) {
+    public CustomerMo(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

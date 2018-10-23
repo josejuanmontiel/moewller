@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import hello.model.CustomerEntity;
-import hello.model.CustomerRepository;
+import hello.model.CustomerMo;
+import hello.model.CustomerMoRepository;
 import hello.moewller.Customer;
+import hello.moewller.CustomerRepository;
 import hello.view.Greeting;
 import hello.view.CustomerView;
 
@@ -37,8 +38,8 @@ public class GreetingController {
     }
 
     @RequestMapping("/customers")
-    public List<CustomerEntity> findAll() {
-        List<CustomerEntity> target = new ArrayList<>();
+    public List<Customer> findAll() {
+        List<Customer> target = new ArrayList<>();
         cRepository.findAll().forEach(target::add);
         return target;
     }
@@ -46,7 +47,7 @@ public class GreetingController {
     @RequestMapping("/mapped-customers")
     public List<CustomerView> mappedFindAll() {
         List<CustomerView> target = new ArrayList<>();
-        for (CustomerEntity c : cRepository.findAll()) {
+        for (Customer c : cRepository.findAll()) {
             target.add(mapper.map(c, CustomerView.class));
         }
         return target;
@@ -55,6 +56,7 @@ public class GreetingController {
     @RequestMapping("/moewller-customers")
     public List<Customer> moewllerFindAll() {
         List<Customer> target = new ArrayList<>();
+        cRepository.findAll().forEach(target::add);
         return target;
     }
 
