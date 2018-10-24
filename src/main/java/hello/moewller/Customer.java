@@ -34,21 +34,25 @@ public class Customer {
         this.lastName = lastName;
     }
 
+    // This is the "base/model" class
+    // TODO - Maybe need some anotatios related JPA, could be from the begining...
     private String firstName;
     private String lastName;
 
-    private String getFirstName() {
+    public String getFirstName() {
         switch (layer) {
             case MO: return firstName;
             case LLER: return ""; 
         }
         return null;
     }
-    private void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getNombre() {
+    // Use case: for rest (jackson) if private, don't show in rest
+    // TODO: make private (via reflection) when LLER
+    private String getNombre() {
         return firstName;
     }
     public String getApellido() {
