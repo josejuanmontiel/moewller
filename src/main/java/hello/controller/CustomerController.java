@@ -15,15 +15,17 @@ import hello.model.CustomerMo;
 import hello.model.CustomerMoRepository;
 import hello.moewller.Customer;
 import hello.moewller.CustomerRepository;
-import hello.view.Greeting;
 import hello.view.CustomerView;
 
 
 @RestController
-public class GreetingController {
+public class CustomerController {
 
     @Autowired
     private Mapper mapper;
+
+    @Autowired
+    private CustomerMoRepository cMoRepository;
 
     @Autowired
     private CustomerRepository cRepository;
@@ -31,23 +33,17 @@ public class GreetingController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Greeting(counter.incrementAndGet(),
-                            String.format(template, name));
-    }
-
     @RequestMapping("/customers")
-    public List<Customer> findAll() {
-        List<Customer> target = new ArrayList<>();
-        cRepository.findAll().forEach(target::add);
+    public List<CustomerMo> findAll() {
+        List<CustomerMo> target = new ArrayList<>();
+        cMoRepository.findAll().forEach(target::add);
         return target;
     }
 
     @RequestMapping("/mapped-customers")
     public List<CustomerView> mappedFindAll() {
         List<CustomerView> target = new ArrayList<>();
-        for (Customer c : cRepository.findAll()) {
+        for (CustomerMo c : cMoRepository.findAll()) {
             target.add(mapper.map(c, CustomerView.class));
         }
         return target;
@@ -56,7 +52,9 @@ public class GreetingController {
     @RequestMapping("/moewller-customers")
     public List<Customer> moewllerFindAll() {
         List<Customer> target = new ArrayList<>();
-        cRepository.findAll().forEach(target::add);
+        for (CustomerMo c : cMoRepository.findAll()) {
+            target.add(mapper.map(c, Customer.class));
+        }
         return target;
     }
 

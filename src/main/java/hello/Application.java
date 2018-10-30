@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 import hello.moewller.*;
 import hello.model.CustomerMo;
+import hello.model.CustomerMoRepository;
 
 @SpringBootApplication
 public class Application {
@@ -20,14 +21,14 @@ public class Application {
     }
 
     @Bean
-	public CommandLineRunner demo(CustomerRepository repository) {
+	public CommandLineRunner demo(CustomerMoRepository repository) {
 		return (args) -> {
 			// save a couple of customers
-			repository.save(new Customer("Jack", "Bauer"));
-			repository.save(new Customer("Chloe", "O'Brian"));
-			repository.save(new Customer("Kim", "Bauer"));
-			repository.save(new Customer("David", "Palmer"));
-			repository.save(new Customer("Michelle", "Dessler"));
+			repository.save(new CustomerMo("Jack", "Bauer"));
+			repository.save(new CustomerMo("Chloe", "O'Brian"));
+			repository.save(new CustomerMo("Kim", "Bauer"));
+			repository.save(new CustomerMo("David", "Palmer"));
+			repository.save(new CustomerMo("Michelle", "Dessler"));
 		};
 	}
 }
